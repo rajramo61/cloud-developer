@@ -45,10 +45,12 @@ export async function deleteLocalFiles(files: Array<string>) {
                 console.error("Error deleting the file : ", error);
             }
         }
-
     }
 }
 
 export function getTempFiles(currFile: string) {
-    return fs.readdirSync(__dirname + '/tmp').filter(file => currFile !== __dirname + '/tmp/' + file).map(file => __dirname + '/tmp/' + file);
+    const tmpDir = __dirname + '/tmp';
+    return fs.readdirSync(tmpDir)
+        .filter(file => currFile !== tmpDir + file)
+        .map(file => tmpDir + file);
 }
